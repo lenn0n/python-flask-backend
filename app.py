@@ -1,5 +1,5 @@
 from flask import Flask, request, Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 import pandas as pd
 import replicate
@@ -12,7 +12,7 @@ def home():
   return "Python Flask API for Story Generation Page and Main Time in PH"
 
 # Libs: PANDAS, CSV
-@app.route('/api/v1/retrieve-time', methods=['POST', 'OPTIONS'])
+@app.route('/api/v1/retrieve-time')
 def retrieve_time():
   data = request.json
   area = data.get('area')
@@ -30,7 +30,7 @@ def retrieve_time():
   return { "data": { "x": x, "y": y} }
 
 # Libs: REPLICATE
-@app.route('/api/v1/generate-story', methods=['POST', 'OPTIONS'])
+@app.route('/api/v1/generate-story')
 def generate_story():
   data = request.json
   query = data.get('query')
