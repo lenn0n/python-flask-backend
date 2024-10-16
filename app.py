@@ -41,7 +41,6 @@ def generate_story():
     'prompt': query,
     'max_tokens': 514,
     'min_tokens': 10,
-    'prompt_template': "{prompt}"
   }
 
   def stream_response():
@@ -51,7 +50,7 @@ def generate_story():
     ):
       yield str(event)
 
-  return Response(stream_response(), content_type='text/plain')
+  return Response(stream_response(), mimetype='text/plain', content_type='text/plain')
 
 if __name__ == '__main__':
   app.run(debug=False)
