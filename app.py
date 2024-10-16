@@ -51,7 +51,7 @@ def generate_story():
     ):
       yield str(event)
 
-  return Response(stream_response(), content_type='text/plain')
+  return Response(stream_response(), mimetype="text/event-stream")
 
 if __name__ == '__main__':
   app.run(debug=False)
