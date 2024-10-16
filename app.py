@@ -12,7 +12,7 @@ def home():
   return "Python Flask API for Story Generation Page and Main Time in PH"
 
 # Libs: PANDAS, CSV
-@app.route('/api/v1/retrieve-time', methods=['POST', 'OPTIONS', 'HEAD'])
+@app.route('/api/v1/retrieve-time', methods=['POST', 'OPTIONS', 'HEAD', 'GET'])
 @cross_origin()
 def retrieve_time():
   data = request.json
@@ -30,17 +30,8 @@ def retrieve_time():
   
   return { "data": { "x": x, "y": y} }
 
-
-@app.route('/api/v1/stream', methods=['OPTIONS', 'HEAD', 'GET'])
-@cross_origin()
-def stream():
-  def generate():
-    for i in range(100):  # Adjust the number or content as per your logic
-      yield f'Data chunk {i}\n'
-  return Response(generate(), content_type='text/plain')
-
 # Libs: REPLICATE
-@app.route('/api/v1/generate-story', methods=['POST', 'OPTIONS', 'HEAD'])
+@app.route('/api/v1/generate-story', methods=['POST', 'OPTIONS', 'HEAD', 'GET'])
 @cross_origin()
 def generate_story():
   data = request.json
